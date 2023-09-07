@@ -1,0 +1,6 @@
+.env
+wp-content/uploads/**/*
+.DS_Store
+wp-content/debug.log
+.debug.log
+*.log

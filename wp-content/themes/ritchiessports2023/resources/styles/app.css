@@ -1,0 +1,33 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.woocommerce-page .main, .page-template-default .main{
+    @apply max-w-7xl mx-auto;
+}
+
+.woocommerce-page header > h1, .woocommerce-page header > time, .woocommerce-page header > p{
+    display:none;
+}
+.woocommerce-page #main{
+    @apply py-8;
+}
+
+.page-header h1{
+    @apply text-ritchiesblue-500 text-4xl font-bold my-8;
+}
+.wc-default-select{
+    @apply p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-ritchiesblue-500 focus:border-ritchiesblue-500;
+}
+
+table.variations{
+    @apply w-full my-2;
+}
+
+input[type="number"].input-text{
+    @apply p-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-ritchiesblue-500 focus:border-ritchiesblue-500;
+}
+
+input[type="text"].input-text{
+    @apply p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-ritchiesblue-500 focus:border-ritchiesblue-500;
+}

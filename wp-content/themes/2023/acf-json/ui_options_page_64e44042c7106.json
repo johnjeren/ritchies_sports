@@ -1,0 +1,22 @@
+{
+    "key": "ui_options_page_64e44042c7106",
+    "title": "Store Details",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Store Details",
+    "menu_slug": "store-details",
+    "parent_slug": "none",
+    "advanced_configuration": false,
+    "icon_url": "",
+    "menu_title": "",
+    "position": null,
+    "redirect": false,
+    "description": "",
+    "update_button": "Update",
+    "updated_message": "Options Updated",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": false,
+    "modified": 1692680258
+}

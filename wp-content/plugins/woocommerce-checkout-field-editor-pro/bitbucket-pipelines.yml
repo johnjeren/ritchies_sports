@@ -1,0 +1,15 @@
+pipelines: 
+  tags:
+    '*':
+      - step: 
+          script:
+            #- apt-get update 
+            - apt-get -qq install zip rsync
+            - mkdir $BITBUCKET_REPO_SLUG
+            - rsync -ar /$BITBUCKET_CLONE_DIR/* $BITBUCKET_REPO_SLUG/ --exclude $BITBUCKET_REPO_SLUG
+            - zip -r $BITBUCKET_REPO_SLUG-$BITBUCKET_TAG.zip $BITBUCKET_REPO_SLUG
+            - pipe: atlassian/bitbucket-upload-file:0.1.1
+              variables:
+                  BITBUCKET_USERNAME: $BB_USERNAME
+                  BITBUCKET_APP_PASSWORD: $BB_APP_PASSWORD
+                  FILENAME: '$BITBUCKET_REPO_SLUG-$BITBUCKET_TAG.zip'

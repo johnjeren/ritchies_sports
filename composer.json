@@ -1,0 +1,25 @@
+{
+    "name": "jj3/ritchies",
+    "autoload": {
+        "psr-4": {
+            "Jj3\\Ritchies\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "JJ3",
+            "email": "jjeren3@gmail.com"
+        }
+    ],
+   "scripts": {
+    "post-autoload-dump": [ "Roots\\Acorn\\ComposerScripts::postAutoloadDump" ]
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.2"
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.5",
+        "roots/acorn": "^3.2"
+    }
+    
+}
