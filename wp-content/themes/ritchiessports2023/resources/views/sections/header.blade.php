@@ -20,7 +20,13 @@
       <?php } ?>
     </div>
   </div>
+  <div class="hidden md:flex w-full  justify-center py-8">
+    <p class="text-ritchiesblue-500 text-xl">
+    137 South Avenue | Tallmadge, Ohio 44278 | 330.633.5667
+    </p>
+  </div>
 </header>
+
   @if (has_nav_menu('primary_navigation'))
   @php 
     $menu_items = NavHelpers::getNavMenuItems('primary_navigation');

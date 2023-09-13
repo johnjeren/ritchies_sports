@@ -31,3 +31,7 @@ input[type="number"].input-text{
 input[type="text"].input-text{
     @apply p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-ritchiesblue-500 focus:border-ritchiesblue-500;
 }
+
+body.home .main{
+    max-width: 100%;
+}

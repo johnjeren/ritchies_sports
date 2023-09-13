@@ -1,7 +1,7 @@
 <?php // build mobile nav display ?>
 <div class="bg-gray-300 w-full md:hidden" x-data="mobileNav">
   <div class="flex justify-center items-center w-full py-2">
-    <div class="w-1/5">
+    <div class="w-1/3">
       <?php if($logo){ ?>
         <a class="brand" href="{{ home_url('/') }}">
           <img src="<?php echo $logo; ?>" alt="Logo" />
