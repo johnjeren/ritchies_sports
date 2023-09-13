@@ -103,8 +103,7 @@ collect(['setup', 'filters'])
         require_once $filename;
     }
 
-    wp_enqueue_style('glide','https://cdn.jsdelivr.net/npm/@glidejs/glide@3.5.x/dist/css/glide.core.min.css');
-wp_enqueue_script('glide-js','https://cdn.jsdelivr.net/npm/@glidejs/glide@3.5.x');
+   
 
 
 
