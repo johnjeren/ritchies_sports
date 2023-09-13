@@ -102,8 +102,14 @@ collect(['setup', 'filters'])
     foreach (glob(__DIR__ . "/app/Classes/*.php") as $filename) {
         require_once $filename;
     }
-
-   
+add_action('wp_enqueue_scripts', 'enqueue_styles');
+function enqueue_styles(){
+    wp_enqueue_style('glide','https://cdn.jsdelivr.net/npm/@glidejs/glide@3.5.x/dist/css/glide.core.min.css');
+}
+add_action('wp_enqueue_scripts', 'enqueue_scripts');
+function enqueue_scripts(){
+    wp_enqueue_script('glide-js','https://cdn.jsdelivr.net/npm/@glidejs/glide@3.5.x');
+}
 
 
 
