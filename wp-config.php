@@ -106,9 +106,10 @@ define('WPLANG', '');
 define('WP_DEBUG', $_ENV['WP_DEBUG']??false);
 define('WP_DEBUG_LOG', $_ENV['WP_DEBUG_LOG']??false);
 define('WP_DEBUG_DISPLAY', $_ENV['WP_DEBUG_DISPLAY']??false);
+define( 'CF_IMAGES_ACCOUNT_ID', $_ENV['CF_IMAGES_ACCOUNT_ID']??'' );
+define( 'CF_IMAGES_KEY_TOKEN', $_ENV['CF_IMAGES_KEY_TOKEN']??'' );
 
-define( 'CF_IMAGES_ACCOUNT_ID', 'f75b11570f374a7132aaef3ef9c622d9' );
-define( 'CF_IMAGES_KEY_TOKEN', 'Yv0CKkiZ7HF9ujuszY-u4qXtPAAlkO_t-qCtjL8l' );
+
 /* That's all, stop editing! Happy blogging. */
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
