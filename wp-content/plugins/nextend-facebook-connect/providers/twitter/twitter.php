@@ -8,9 +8,11 @@ class NextendSocialProviderTwitter extends NextendSocialProviderOAuth {
     /** @var NextendSocialProviderTwitterClient|NextendSocialProviderTwitterV2Client */
     protected $client;
 
-    protected $color = '#4ab3f4';
+    protected $color = '#000000';
 
-    protected $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path fill="#fff" d="M16.327 3.007A5.07 5.07 0 0 1 20.22 4.53a8.207 8.207 0 0 0 2.52-.84l.612-.324a4.78 4.78 0 0 1-1.597 2.268 2.356 2.356 0 0 1-.54.384v.012A9.545 9.545 0 0 0 24 5.287v.012a7.766 7.766 0 0 1-1.67 1.884l-.768.612a13.896 13.896 0 0 1-9.874 13.848c-2.269.635-4.655.73-6.967.276a16.56 16.56 0 0 1-2.895-.936 10.25 10.25 0 0 1-1.394-.708L0 20.023a8.44 8.44 0 0 0 1.573.06c.48-.084.96-.06 1.405-.156a10.127 10.127 0 0 0 2.956-1.056 5.41 5.41 0 0 0 1.333-.852 4.44 4.44 0 0 1-1.465-.264 4.9 4.9 0 0 1-3.12-3.108c.73.134 1.482.1 2.198-.096a3.457 3.457 0 0 1-1.609-.636A4.651 4.651 0 0 1 .953 9.763c.168.072.336.156.504.24.334.127.68.22 1.033.276.216.074.447.095.673.06H3.14c-.248-.288-.653-.468-.901-.78a4.91 4.91 0 0 1-1.105-4.404 5.62 5.62 0 0 1 .528-1.26c.008 0 .017.012.024.012.13.182.28.351.445.504a8.88 8.88 0 0 0 1.465 1.38 14.43 14.43 0 0 0 6.018 2.868 9.065 9.065 0 0 0 2.21.288 4.448 4.448 0 0 1 .025-2.28 4.771 4.771 0 0 1 2.786-3.252 5.9 5.9 0 0 1 1.093-.336l.6-.072z"/></svg>';
+    protected $svg = '<svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#a)"><path d="M13.712 10.622 20.413 3h-1.587l-5.819 6.618L8.36 3H3l7.027 10.007L3 21h1.588l6.144-6.989L15.64 21H21l-7.288-10.378Zm-2.175 2.474-.712-.997L5.16 4.17H7.6l4.571 6.4.712.996 5.943 8.319h-2.439l-4.85-6.788Z" fill="#fff"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h24v24H0z"/></clipPath></defs></svg>';
+
+    protected $svgLegacy = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path fill="#fff" d="M16.327 3.007A5.07 5.07 0 0 1 20.22 4.53a8.207 8.207 0 0 0 2.52-.84l.612-.324a4.78 4.78 0 0 1-1.597 2.268 2.356 2.356 0 0 1-.54.384v.012A9.545 9.545 0 0 0 24 5.287v.012a7.766 7.766 0 0 1-1.67 1.884l-.768.612a13.896 13.896 0 0 1-9.874 13.848c-2.269.635-4.655.73-6.967.276a16.56 16.56 0 0 1-2.895-.936 10.25 10.25 0 0 1-1.394-.708L0 20.023a8.44 8.44 0 0 0 1.573.06c.48-.084.96-.06 1.405-.156a10.127 10.127 0 0 0 2.956-1.056 5.41 5.41 0 0 0 1.333-.852 4.44 4.44 0 0 1-1.465-.264 4.9 4.9 0 0 1-3.12-3.108c.73.134 1.482.1 2.198-.096a3.457 3.457 0 0 1-1.609-.636A4.651 4.651 0 0 1 .953 9.763c.168.072.336.156.504.24.334.127.68.22 1.033.276.216.074.447.095.673.06H3.14c-.248-.288-.653-.468-.901-.78a4.91 4.91 0 0 1-1.105-4.404 5.62 5.62 0 0 1 .528-1.26c.008 0 .017.012.024.012.13.182.28.351.445.504a8.88 8.88 0 0 0 1.465 1.38 14.43 14.43 0 0 0 6.018 2.868 9.065 9.065 0 0 0 2.21.288 4.448 4.448 0 0 1 .025-2.28 4.771 4.771 0 0 1 2.786-3.252 5.9 5.9 0 0 1 1.093-.336l.6-.072z"/></svg>';
 
     const requiredApi1 = 'V1.1';
     const requiredApi2 = 'V2';
@@ -105,17 +107,18 @@ class NextendSocialProviderTwitter extends NextendSocialProviderOAuth {
 
     public function __construct() {
         $this->id    = 'twitter';
-        $this->label = 'Twitter';
+        $this->label = 'X (formerly Twitter)';
 
         $this->path = dirname(__FILE__);
 
         parent::__construct(array(
             'consumer_key'       => '',
             'consumer_secret'    => '',
-            'login_label'        => 'Continue with <b>Twitter</b>',
-            'register_label'     => 'Sign up with <b>Twitter</b>',
-            'link_label'         => 'Link account with <b>Twitter</b>',
-            'unlink_label'       => 'Unlink account from <b>Twitter</b>',
+            'skin'               => 'x',
+            'login_label'        => 'Continue with <b>X</b>',
+            'register_label'     => 'Sign up with <b>X</b>',
+            'link_label'         => 'Link account with <b>X</b>',
+            'unlink_label'       => 'Unlink account from <b>X</b>',
             'profile_image_size' => 'normal',
             'api_version'        => '1.1',
             'client_id'          => '',
@@ -134,10 +137,41 @@ class NextendSocialProviderTwitter extends NextendSocialProviderOAuth {
     }
 
     protected function forTranslation() {
-        __('Continue with <b>Twitter</b>', 'nextend-facebook-connect');
-        __('Sign up with <b>Twitter</b>', 'nextend-facebook-connect');
-        __('Link account with <b>Twitter</b>', 'nextend-facebook-connect');
-        __('Unlink account from <b>Twitter</b>', 'nextend-facebook-connect');
+        __('Continue with <b>X</b>', 'nextend-facebook-connect');
+        __('Sign up with <b>X</b>', 'nextend-facebook-connect');
+        __('Link account with <b>X</b>', 'nextend-facebook-connect');
+        __('Unlink account from <b>X</b>', 'nextend-facebook-connect');
+    }
+
+
+    public function getRawDefaultButton() {
+        $skin = $this->settings->get('skin');
+        switch ($skin) {
+            case 'legacy':
+                $color = '#4ab3f4';
+                $svg   = $this->svgLegacy;
+                break;
+            default:
+                $color = $this->color;
+                $svg   = $this->svg;
+        }
+
+        return '<div class="nsl-button nsl-button-default nsl-button-' . $this->id . '" data-skin="' . $skin . '" style="background-color:' . $color . ';"><div class="nsl-button-svg-container">' . $svg . '</div><div class="nsl-button-label-container">{{label}}</div></div>';
+    }
+
+    public function getRawIconButton() {
+        $skin = $this->settings->get('skin');
+        switch ($skin) {
+            case 'legacy':
+                $color = '#4ab3f4';
+                $svg   = $this->svgLegacy;
+                break;
+            default:
+                $color = $this->color;
+                $svg   = $this->svg;
+        }
+
+        return '<div class="nsl-button nsl-button-icon nsl-button-' . $this->id . '" data-skin="' . $skin . '" style="background-color:' . $color . ';"><div class="nsl-button-svg-container">' . $svg . '</div></div>';
     }
 
     public function validateSettings($newData, $postedData) {
@@ -175,6 +209,7 @@ class NextendSocialProviderTwitter extends NextendSocialProviderOAuth {
                         Notices::addError(sprintf(__('The %1$s entered did not appear to be a valid. Please enter a valid %2$s.', 'nextend-facebook-connect'), $this->requiredFields[$key], $this->requiredFields[$key]));
                     }
                     break;
+                case 'skin':
                 case 'profile_image_size':
                     $newData[$key] = trim(sanitize_text_field($value));
                     break;

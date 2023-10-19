@@ -264,6 +264,8 @@ var WPO_LazyLoad = function() {
 	function handle(element) {
 		remove_class(element, settings.select_class);
 		if (is_element_in_viewport(element)) {
+			element = maybe_get_element_in_picture(element);
+			
 			if (element.dataset.hasOwnProperty('src')) {
 				element.src = element.dataset.src;
 			}
@@ -286,9 +288,17 @@ var WPO_LazyLoad = function() {
 	 * @return {boolean}
 	 */
 	function is_element_in_viewport(element) {
+		element = maybe_get_element_in_picture(element);
 		const rect = element.getBoundingClientRect();
 		const window_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 		return rect.top > 0 && rect.top < window_height;
+	}
+
+	function maybe_get_element_in_picture(element) {
+		if ('picture' === element.tagName.toLowerCase()) {
+			return element.lastElementChild;
+		}
+		return element;
 	}
 
 	/**

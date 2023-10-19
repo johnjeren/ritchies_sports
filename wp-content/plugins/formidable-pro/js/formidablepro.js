@@ -6524,6 +6524,28 @@ function frmProFormJS() {
 		}, options );
 	}
 
+	/**
+	 * @since 6.5.1
+	 */
+	function handleElementorPopupConflicts() {
+		var elementorPopupWrapper = document.querySelector( '.elementor-popup-modal' );
+
+		if ( null !== elementorPopupWrapper ) {
+			// Make dropzone items clickable.
+			elementorPopupWrapper.querySelectorAll( '.frm_dropzone' ).forEach( function( item ) {
+				item.classList.remove( 'dz-clickable' );
+			});
+
+			// Remove field chosen containers.
+			elementorPopupWrapper.querySelectorAll( '.frm_form_field .chosen-container' ).forEach( function( chosenContainer ) {
+				chosenContainer.remove();
+			});
+		}
+
+		loadDropzones();
+		loadChosen();
+	}
+
 	return {
 		init: function() {
 			maybeAddPolyfills();
@@ -6585,6 +6607,9 @@ function frmProFormJS() {
 					jQuery( this ).next( '.frm_toggle_container' ).hide();
 				}
 			});
+
+			// Elementor popup show event. Fix Elementor Popup && FF PRO fields( file upload | dynamic field ) conflicts
+			jQuery( document ).on( 'elementor/popup/show', handleElementorPopupConflicts );
 
 			addTopAddRowBtnForRepeater();
 

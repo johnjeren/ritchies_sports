@@ -52,7 +52,7 @@ class WP_Optimize_Power_Tweak__Post_Meta extends WP_Optimize_Power_Tweak {
 	 * @return array
 	 */
 	public function run() {
-		$success = array('message' => __('The post meta index was created succesfully.', 'wp-optimize'));
+		$success = array('message' => __('The post meta index was created successfully.', 'wp-optimize'));
 		$failure = array('message' => __('The post meta index creation was unsuccessful.', 'wp-optimize'));
 
 		if($this->create_post_meta_index()) return $success;

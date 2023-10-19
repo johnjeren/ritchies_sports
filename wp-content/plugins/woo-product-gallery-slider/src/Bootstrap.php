@@ -7,35 +7,15 @@ class Bootstrap {
 		new Product();
 		new Options();
 		add_action( 'admin_enqueue_scripts', [$this, 'admin_scripts'], 90 );
-		if ( time() > strtotime( get_option( 'ciwpgs_installed' ) . ' + 3 Days' ) ) {
+		if ( time() > strtotime( get_option( 'ciwpgs_installed' ) . ' + 5 Days' ) ) {
 			add_action( 'admin_notices', [$this, 'review'], 10 );
 		}
-
 		add_action( 'admin_init', [$this, 'wcpg_param_check'], 10 );
 		add_action( 'wcpg_admin_top', [$this, 'pro_notice'], 10 );
-		add_action( 'csf_options_after', array( $this, 'update_notice_option' ) );
+
 		add_action( 'plugin_action_links_' . CIPG_FILE, [$this, 'wpgs_plugin_row_meta'], 90 );
-		
-	}
-// notice for option page
-	public function update_notice_option() {
-		$currentScreen = get_current_screen();
-		if ( $currentScreen->id == 'codeixer_page_cix-gallery-settings' ) {
-			echo '<a class="cit-admin-pro-notice" href="https://www.codeixer.com/product-gallery-slider-for-woocommerce?utm_source=freemium&utm_medium=settings_page_50_off&utm_campaign=upgrade_pro" target="_blank"><p>Missing anything? Discover more powerful features in the premium version and get 50% off now!</p> <span>I\'m interested</span></a><script
-  id="helpspace-widget-script"
-  data-auto-init
-  data-token="a5vHpm8ywlWsNTB5VK5q8dxVf7Vo3B4FQXe67giv"
-  data-client-id="70d81c749c4b414794baeffa32589cdb"
-  data-widget-id="5d37f150-9d84-4bfe-a388-86a5d4ed2d74"
-  src="https://cdn.helpspace.com/widget/widget-v1.js" 
-  async>
-</script>
-
-';
-		}
 
 	}
-
 
 	/**
 	 * Admin scripts/styles
@@ -66,7 +46,7 @@ class Bootstrap {
         </p>
         </div>
         <?php
-}
+	}
 	public function pro_notice() {?>
         <div class="notice notice-success">
         <h3>Need More options for customize the gallery slider ?</h3>
@@ -74,7 +54,7 @@ class Bootstrap {
         <a href="https://codeixer.com/twist" target="_blank" class="button button-primary" style="margin-bottom:20px">Know more about the pro version</a>
         </div>
         <?php
-}
+	}
 
 	/**
 	 * simple dismissable logic
@@ -82,13 +62,13 @@ class Bootstrap {
 	 * @return void
 	 */
 	public function wcpg_param_check() {
-		if ( isset( $_GET['wcpg-review-dismiss'] ) && $_GET['wcpg-review-dismiss'] == 1 ) {
+		if ( isset( $_GET['wcpg-review-dismiss'] ) && 1 == $_GET['wcpg-review-dismiss'] ) {
 			update_option( 'wcpg_plugin_review', 1 );
 		}
-		if ( isset( $_GET['dfwc-banner'] ) && $_GET['dfwc-banner'] == 1 ) {
+		if ( isset( $_GET['dfwc-banner'] ) && 1 == $_GET['dfwc-banner'] ) {
 			update_option( 'dfwc-banner', 1 );
 		}
-		if ( isset( $_GET['wcpg-later-dismiss'] ) && $_GET['wcpg-later-dismiss'] == 1 ) {
+		if ( isset( $_GET['wcpg-later-dismiss'] ) && 1 == $_GET['wcpg-later-dismiss'] ) {
 			set_transient( 'wpgs-review-later', 1, 4 * DAY_IN_SECONDS );
 		}
 	}

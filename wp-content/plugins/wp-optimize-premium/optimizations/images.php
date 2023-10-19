@@ -102,7 +102,7 @@ class WP_Optimization_images extends WP_Optimization {
 
 	/**
 	 * Set mode for optimization process. We use work mode to separate getting unused images information
-	 * and getting image sizes informtion process.
+	 * and getting image sizes information process.
 	 *
 	 * There are three possible modes:
 	 *  DETECT_IMAGES - detect only unused images
@@ -574,7 +574,7 @@ class WP_Optimization_images extends WP_Optimization {
 	}
 
 	/**
-	 * Check if requested information alreayd prepared and stored in the cache.
+	 * Check if requested information already prepared and stored in the cache.
 	 *
 	 * @return bool
 	 */
@@ -825,7 +825,7 @@ class WP_Optimization_images extends WP_Optimization {
 		$this->switch_to_blog($blog_id);
 
 		// gets posts ids with post_content
-		$posts = $wpdb->get_results($wpdb->prepare("SELECT ID, post_content FROM {$wpdb->posts} WHERE post_type NOT IN ('revision', 'attachment', 'inherit') AND post_status IN ('publish', 'draft') ORDER BY ID LIMIT %d, %d", $offset, $limit));
+		$posts = $wpdb->get_results($wpdb->prepare("SELECT ID, post_content FROM {$wpdb->posts} WHERE post_type NOT IN ('revision', 'attachment', 'inherit') AND post_status IN ('publish', 'draft', 'trash', 'pending') ORDER BY ID LIMIT %d, %d", $offset, $limit));
 
 		// use different functions to get images info from the posts.
 		$images_ids = $this->get_posts_content_images($posts, $blog_id);
@@ -896,7 +896,7 @@ class WP_Optimization_images extends WP_Optimization {
 			if (!empty($images)) {
 				foreach ($images as $image) {
 					$original_image = $this->get_original_image_file_name($image);
-					// before 5.4 wp_unique_filename() function doesn't add `-number` suffix for the image filename that possible was resized by WordPress (i.e. with siffix -nxn)
+					// before 5.4 wp_unique_filename() function doesn't add `-number` suffix for the image filename that possible was resized by WordPress (i.e. with suffix -nxn)
 					// this cause the issue with detecting used/unused images thatswhy we add information about filename found in the post and later check both filenames in get_image_attachment_id_bulk().
 					$fname  = pathinfo($image, PATHINFO_FILENAME);
 					if ($fname && preg_match('/\-([1-9]\d*x[1-9]\d*)$/', $fname)) {

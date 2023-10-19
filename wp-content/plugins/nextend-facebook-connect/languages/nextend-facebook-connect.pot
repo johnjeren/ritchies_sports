@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nextend-facebook-connect\n"
-"POT-Creation-Date: 2023-06-15 14:15+0200\n"
+"POT-Creation-Date: 2023-08-24 17:55+0200\n"
 "PO-Revision-Date: 2020-06-29 13:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: nextend-facebook-connect\n"
@@ -304,7 +304,15 @@ msgstr ""
 msgid "Default roles for user who registered with this provider"
 msgstr ""
 
-msgid "Default"
+#, php-format
+msgid "Default (The %1$s is: %2$s)"
+msgstr ""
+
+msgid "default WordPress role"
+msgstr ""
+
+#, php-format
+msgid "Default (The %s.)"
 msgstr ""
 
 msgid "Register"
@@ -604,6 +612,9 @@ msgid "Connect button after register"
 msgstr ""
 
 msgid "Register button style"
+msgstr ""
+
+msgid "Default"
 msgstr ""
 
 msgid "Fullwidth"
@@ -1309,14 +1320,6 @@ msgid ""
 msgstr ""
 
 #, php-format
-msgid "Pick the %1$s option for the platform."
-msgstr ""
-
-#, php-format
-msgid "For the question %1$s, select the %2$s option, then press %3$s."
-msgstr ""
-
-#, php-format
 msgid ""
 "Fill the %1$s and %2$s fields. The specified app name will appear on "
 "your %3$s!"
@@ -1680,6 +1683,12 @@ msgstr ""
 msgid "Required API: %1$s"
 msgstr ""
 
+msgid "X"
+msgstr ""
+
+msgid "Legacy"
+msgstr ""
+
 #, php-format
 msgid ""
 "On the left side, under the %s section click on the name of your App."
@@ -1695,6 +1704,15 @@ msgstr ""
 
 #, php-format
 msgid "Click on %s"
+msgstr ""
+
+#, php-format
+msgid ""
+"To allow your visitors to log in with their %1$s account, first you "
+"must create an %1$s App. The following guide will help you through the "
+"%1$s App creation process. After you have created your %1$s App, head "
+"over to \"Settings\" and configure the given \"%2$s\" and \"%3$s\" "
+"according to your %1$s App."
 msgstr ""
 
 msgid ""
@@ -1772,7 +1790,9 @@ msgid "WARNING"
 msgstr ""
 
 #, php-format
-msgid "%1$s which means a user can me  \"X\" requests every 24 hours."
+msgid ""
+"%1$s which means a user can make a fix number of requests every 24 "
+"hours."
 msgstr ""
 
 msgid "User Rate Limit:"
@@ -1780,9 +1800,9 @@ msgstr ""
 
 #, php-format
 msgid ""
-"%1$s which means your App can serve a total of \"Y\" requests every 30 "
-"days. This limit is shared between all users and applied to the entire "
-"project."
+"%1$s which means your App can serve a fix number of requests in total "
+"every 30 days. This limit is shared between all users and applied to "
+"the entire project."
 msgstr ""
 
 msgid "Effective 30-day limit:"
@@ -1804,8 +1824,8 @@ msgstr ""
 
 #, php-format
 msgid ""
-"Go back to your Twitter project and on the left side, under the \"<b>"
-"%s</b>\" section click on the name of your App."
+"Go back to your X project and on the left side, under the \"<b>%s</b>"
+"\" section click on the name of your App."
 msgstr ""
 
 #, php-format
@@ -1838,16 +1858,16 @@ msgstr ""
 msgid "Original"
 msgstr ""
 
-msgid "Continue with <b>Twitter</b>"
+msgid "Continue with <b>X</b>"
 msgstr ""
 
-msgid "Sign up with <b>Twitter</b>"
+msgid "Sign up with <b>X</b>"
 msgstr ""
 
-msgid "Link account with <b>Twitter</b>"
+msgid "Link account with <b>X</b>"
 msgstr ""
 
-msgid "Unlink account from <b>Twitter</b>"
+msgid "Unlink account from <b>X</b>"
 msgstr ""
 
 msgctxt "Register form submit button label"
@@ -1984,15 +2004,6 @@ msgstr ""
 
 #, php-format
 msgid "Add the following URL to the %s field: "
-msgstr ""
-
-#, php-format
-msgid ""
-"To allow your visitors to log in with their %1$s account, first you "
-"must create an %1$s App. The following guide will help you through the "
-"%1$s App creation process. After you have created your %1$s App, head "
-"over to \"Settings\" and configure the given \"%2$s\" and \"%3$s\" "
-"according to your %1$s App."
 msgstr ""
 
 msgid ""

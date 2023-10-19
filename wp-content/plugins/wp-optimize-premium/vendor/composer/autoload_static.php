@@ -4,10 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitcf0a7322f7169327982629dd95601536
+class ComposerStaticInit9fe4755526597631d50aad2853fbd7ca
 {
     public static $files = array (
         '7166494aeff09009178f278afd86c83f' => __DIR__ . '/..' . '/yahnis-elsts/plugin-update-checker/load-v4p13.php',
+        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
+        '3919eeb97e98d4648304477f8ef734ba' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Random.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -106,6 +108,13 @@ class ComposerStaticInitcf0a7322f7169327982629dd95601536
     );
 
     public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'System' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+            ),
+        ),
         'P' => 
         array (
             'Props\\' => 
@@ -117,11 +126,39 @@ class ComposerStaticInitcf0a7322f7169327982629dd95601536
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',
             ),
         ),
+        'N' => 
+        array (
+            'Net' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+            ),
+        ),
+        'M' => 
+        array (
+            'Math' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+            ),
+        ),
         'J' => 
         array (
             'JSMin\\' => 
             array (
                 0 => __DIR__ . '/..' . '/mrclay/jsmin-php/src',
+            ),
+        ),
+        'F' => 
+        array (
+            'File' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+            ),
+        ),
+        'C' => 
+        array (
+            'Crypt' => 
+            array (
+                0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
             ),
         ),
     );
@@ -194,10 +231,10 @@ class ComposerStaticInitcf0a7322f7169327982629dd95601536
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitcf0a7322f7169327982629dd95601536::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitcf0a7322f7169327982629dd95601536::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitcf0a7322f7169327982629dd95601536::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitcf0a7322f7169327982629dd95601536::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9fe4755526597631d50aad2853fbd7ca::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9fe4755526597631d50aad2853fbd7ca::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit9fe4755526597631d50aad2853fbd7ca::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit9fe4755526597631d50aad2853fbd7ca::$classMap;
 
         }, null, ClassLoader::class);
     }

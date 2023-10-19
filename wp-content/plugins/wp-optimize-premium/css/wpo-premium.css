@@ -42,6 +42,16 @@
   min-width: 50%;
 }
 
+#purge_cache_permissions + .select2-container--default .select2-selection--multiple .select2-selection__choice {
+  line-height: 1;
+}
+
+#purge_cache_permissions + .select2-container--default .select2-search--inline .select2-search__field {
+  margin-bottom: 0px;
+  height: 18px;
+  min-height: fit-content;
+}
+
 #wpo_auto_events {
   background-color: #FFF;
   border: 1px solid #CCC;

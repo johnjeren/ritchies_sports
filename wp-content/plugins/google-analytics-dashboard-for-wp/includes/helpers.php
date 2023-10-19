@@ -1323,15 +1323,6 @@ function exactmetrics_count_addon_codes( $current_code ) {
 		}
 	}
 
-	// If the performance addon is installed and its Google Optimize ID is the same as the current code, then increase the count
-	if ( class_exists( 'ExactMetrics_Performance' ) ) {
-		$container_id = exactmetrics_get_option( 'goptimize_container', '' );
-
-		if ( $container_id === $current_code ) {
-			$count ++;
-		}
-	}
-
 	return $count;
 }
 
@@ -1397,6 +1388,18 @@ function exactmetrics_detect_tracking_code_error( $body ) {
 		-- $total_count;
 	}
 
+	// Test for Advanced Ads plugin tracking code.
+	$pattern = '/advanced_ads_ga_UID.*?"' . $current_code . '"/m';
+	if ( preg_match_all( $pattern, $body, $matches ) ) {
+		$total_count -= count( $matches[0] );
+	}
+
+	// Test for WP Popups tracking code.
+	$pattern = '/wppopups_pro_vars.*?"' . $current_code . '"/m';
+	if ( preg_match_all( $pattern, $body, $matches ) ) {
+		$total_count -= count( $matches[0] );
+	}
+
 	if ( $total_count > $limit ) {
 		// Translators: The placeholders are for making the "We have detected multiple tracking codes" text bold & adding a link to support.
 		$message           = esc_html__( '%1$sWe have detected multiple tracking codes%2$s! You should remove non-ExactMetrics ones. If you need help finding them please %3$sread this article%4$s.', 'google-analytics-dashboard-for-wp' );
@@ -1441,10 +1444,7 @@ function exactmetrics_is_code_installed_frontend() {
 	if ( in_array( $response_code, $accepted_http_codes, true ) ) {
 		$body = wp_remote_retrieve_body( $request );
 
-		$errors = array_merge(
-			exactmetrics_detect_tracking_code_error( $body ),
-			exactmetrics_detect_tracking_code_error( $body, 'v4' )
-		);
+		$errors = exactmetrics_detect_tracking_code_error( $body );
 	}
 
 	return $errors;
@@ -2246,5 +2246,13 @@ if ( ! function_exists( 'current_datetime' ) ) {
 	 */
 	function current_datetime() {
 		return new DateTimeImmutable( 'now', wp_timezone() );
+	}
+}
+
+
+if ( ! function_exists( 'exactmetrics_is_authed' ) ) {
+	function exactmetrics_is_authed() {
+		$site_profile = get_option('exactmetrics_site_profile');
+		return isset($site_profile['key']);
 	}
 }

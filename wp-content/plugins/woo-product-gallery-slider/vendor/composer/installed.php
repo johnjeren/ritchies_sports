@@ -3,7 +3,7 @@
         'name' => 'codeixer/woo-product-gallery-slider',
         'pretty_version' => 'dev-2.2.7.1',
         'version' => '2.2.7.1-dev',
-        'reference' => '4bca3c7781b14073997dc0b7ba2a068aedb3be34',
+        'reference' => '29e3f967a1d7ba81923e845d7e83cc6979f0bdd0',
         'type' => 'woocommerce-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'appsero/client' => array(
-            'pretty_version' => 'v1.2.3',
-            'version' => '1.2.3.0',
-            'reference' => 'ddfaa9ce62618e0aee4f95ddeb37a27ebd9a3508',
+            'pretty_version' => 'v1.2.4',
+            'version' => '1.2.4.0',
+            'reference' => 'a5f23a117b6f3080e85969226735a96816460630',
             'type' => 'library',
             'install_path' => __DIR__ . '/../appsero/client',
             'aliases' => array(),
@@ -22,7 +22,7 @@
         'codeixer/woo-product-gallery-slider' => array(
             'pretty_version' => 'dev-2.2.7.1',
             'version' => '2.2.7.1-dev',
-            'reference' => '4bca3c7781b14073997dc0b7ba2a068aedb3be34',
+            'reference' => '29e3f967a1d7ba81923e845d7e83cc6979f0bdd0',
             'type' => 'woocommerce-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

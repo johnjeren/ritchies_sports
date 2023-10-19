@@ -377,7 +377,8 @@ class FrmProEntryMetaHelper {
 		}
 
 		if ( ! $field ) {
-			return '';
+			$max = '';
+			return $max;
 		}
 
 		$max = FrmDb::get_var( 'frm_item_metas', array( 'field_id' => $field->id ), 'meta_value', array( 'order_by' => 'item_id DESC' ) );

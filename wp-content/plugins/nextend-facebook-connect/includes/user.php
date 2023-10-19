@@ -498,11 +498,21 @@ class NextendSocialUser {
                 $this,
                 'um_get_loginpage'
             ));
-            do_action('um_user_register', $user_id, array(
+            $um_registration_timestamp = current_time('timestamp');
+            $um_registration_args      = array(
                 'submitted' => array(
-                    'timestamp' => current_time('timestamp')
-                )
-            ));
+                    'timestamp' => $um_registration_timestamp
+                ),
+                'timestamp' => $um_registration_timestamp
+            );
+            $um_registration_form_data = array(
+                'custom_fields' => ""
+            );
+            /**
+             * Ultimate Member reads the data out of this meta field when it displays the user registration date at  the Users tabe > Info.
+             */
+            update_user_meta($user_id, 'timestamp', $um_registration_timestamp);
+            do_action('um_user_register', $user_id, $um_registration_args, $um_registration_form_data);
         }
 
 
@@ -754,11 +764,13 @@ class NextendSocialUser {
                 $terms = NextendSocialLogin::$settings->get('terms');
             }
 
+            $terms = __($terms, 'nextend-facebook-connect');
+
             if (function_exists('get_privacy_policy_url')) {
                 $terms = str_replace('#privacy_policy_url', get_privacy_policy_url(), $terms);
             }
 
-            echo __($terms, 'nextend-facebook-connect');
+            echo $terms;
 
             ?>
         </p>

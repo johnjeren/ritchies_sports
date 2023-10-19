@@ -250,9 +250,15 @@ class FrmProHooksController {
 		add_filter( 'frm_plugin_search', 'FrmProPluginSearch::inject_search_suggestion' );
 
 		FrmProCronController::init_cron();
+
+		// Stripe Lite
+		add_filter( 'frm_stripe_combined_js_files', 'FrmProStrpLiteController::combine_stripe_js_files' );
 	}
 
 	public static function load_admin_hooks() {
+
+		add_action( 'admin_head', 'FrmProAppController::admin_init_head' );
+
 		add_action( 'frm_after_uninstall', 'FrmProDb::uninstall' );
 		add_filter( 'frm_form_nav_list', 'FrmProAppController::form_nav', 10, 2 );
 		add_filter( 'frm_icon', 'FrmProAppController::whitelabel_icon', 10, 2 );
@@ -473,6 +479,16 @@ class FrmProHooksController {
 			add_action( 'wp_ajax_frm_application_search', 'FrmProApplicationTaxonomyController::search' );
 			add_action( 'wp_ajax_frm_create_page_with_shortcode', 'FrmProApplicationTaxonomyController::before_create_page_with_shortcode', 1 );
 		}
+
+		// Stripe Lite.
+		if ( class_exists( 'FrmStrpLiteHooksController', false ) && ! class_exists( 'FrmStrpHooksController', false ) ) {
+			add_action( 'frm_stripe_lite_customer_info_after_email', 'FrmProStrpLiteController::customer_info_after_email' );
+			add_action( 'plugins_loaded', 'FrmProStrpLiteController::add_registration_hooks' );
+			add_filter( 'frm_pay_action_defaults', 'FrmProStrpLiteController::add_payment_action_defaults' );
+			add_filter( 'frm_trans_settings_for_js', 'FrmProStrpLiteController::add_settings_for_js', 10, 2 );
+		}
+
+		add_action( 'admin_enqueue_scripts', 'FrmProFieldRte::enqueue_missing_media_gallery_scripts' );
 	}
 
 	public static function load_ajax_hooks() {

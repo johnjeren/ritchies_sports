@@ -377,7 +377,7 @@ class FrmProStylesController extends FrmStylesController {
 	/**
 	 * Encodes image as a base64 data.
 	 *
-	 * @since 6.4.2
+	 * @since 6.4.3
 	 *
 	 * @param string $file File path.
 	 * @param string $mime_type

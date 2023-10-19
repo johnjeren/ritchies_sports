@@ -46,8 +46,7 @@ if ( 'select' === $field['data_type'] ) {
 	if ( ! empty( $field['options'] ) ) {
 		$radio_container_params = array(
 			'class' => 'frm_opt_container',
-			'role' => 'radiogroup',
-			'tabindex' => '0',
+			'role'  => 'radiogroup',
 		);
 		if ( $field['required'] === '1' ) {
 			$radio_container_params['aria-required'] = 'true';
@@ -65,8 +64,7 @@ if ( 'select' === $field['data_type'] ) {
 	if ( ! empty( $field['options'] ) ) {
 		$checkbox_container_params = array(
 			'class' => 'frm_opt_container',
-			'role' => 'group',
-			'tabindex' => '0',
+			'role'  => 'group',
 		);
 		if ( $field['required'] === '1' ) {
 			$checkbox_container_params['aria-required'] = 'true';

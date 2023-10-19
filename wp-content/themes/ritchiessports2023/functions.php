@@ -102,6 +102,7 @@ collect(['setup', 'filters'])
     foreach (glob(__DIR__ . "/app/Classes/*.php") as $filename) {
         require_once $filename;
     }
+
 add_action('wp_enqueue_scripts', 'enqueue_styles');
 function enqueue_styles(){
     wp_enqueue_style('glide','https://cdn.jsdelivr.net/npm/@glidejs/glide@3.5.x/dist/css/glide.core.min.css');
@@ -112,4 +113,45 @@ function enqueue_scripts(){
 }
 
 
+function my_acf_admin_head() {
+    ?>
+    <style type="text/css">
+        .acf-fields .layout{
+            background-color: #dedede;
+            border:1px #000 solid;
+        }
+        .acf-fields .layout .acf-fc-layout-handle{
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .acf-fields .layout .acf-fc-layout-order{
+            font-size:18px;
+        }
 
+        .acf-fields .layout .acf-tab-wrap{
+            background-color:#666;
+        }
+        .acf-fields .layout .acf-tab-button{
+            text-transform: uppercase;
+        }
+
+        .acf-fields{
+            background-color: #fefefe;
+        }
+
+        .wp-core-ui .button-primary{
+            background-color: #666;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+        .wp-core-ui .button-primary:hover{
+            background-color: #000;
+            transition: all 0.3s ease-in-out;
+        }
+
+    </style>
+    <?php
+}
+
+add_action('acf/input/admin_head', 'my_acf_admin_head');

@@ -16,7 +16,7 @@ class WP_Optimize_Power_Tweaks {
 	 */
 	public function __construct() {
 		// Include the abstract class
-		include_once WPO_PLUGIN_MAIN_PATH.'/includes/power-tweaks/abstract-class-wp-optimize-power-tweak.php';
+		include_once WPO_PLUGIN_MAIN_PATH.'includes/power-tweaks/abstract-class-wp-optimize-power-tweak.php';
 		add_filter('wp_optimize_admin_page_WP-Optimize_tabs', array($this, 'add_admin_tab'));
 		add_action('wp_optimize_admin_page_WP-Optimize_power-tweaks', array($this, 'output_admin_tab'), 30);
 		add_action('wpo_premium_scripts_styles', array($this, 'enqueue_scripts'), 20, 3);

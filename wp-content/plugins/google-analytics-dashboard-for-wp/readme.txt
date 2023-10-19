@@ -2,10 +2,10 @@
 Contributors: chriscct7, smub
 Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics,google analytics,google analytics dashboard,google analytics plugin,google analytics widget,gtag
-Requires at least: 4.8.0
-Tested up to: 6.3
-Stable tag: 7.19
-Requires PHP: 5.6
+Requires at least: 5.6.0
+Tested up to: 6.3.1
+Stable tag: 7.20.1
+Requires PHP: 7.2
 License: GPL v3
 
 Connects Google Analytics with your WordPress site. Displays stats to help you understand your users and site content on a whole new level!
@@ -186,8 +186,20 @@ You can translate Google Analytics Dashboard for WP by ExactMetrics on [translat
 3. Navigate to the Insights tab in your WordPress admin menu and configure the plugin.
 4. Want more features? <a href="https://www.exactmetrics.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase ExactMetrics Pro</a>!
 
-
 == Changelog ==
+= 7.20.1: October 09, 2023 =
+- Fix: We updated our lite emails to render better inside multiple mail clients. We also changed the emails to send out monthly instead of weekly. To disable emails go to Settings -> Advanced - Toggle the "Enable Email Summaries
+
+= 7.20: October 02, 2023 =
+- New: Google Analytics and eCommerce support for WishList Member
+- New: Google Analytics and eCommerce support for WPCharitable 
+- Enhanced: Improved support for PHP 8.2.
+- Enhanced: Improved Site Health compatibility.
+- Fixed: Restrict Content Pro, we fixed the refund event in GoogleAnalytics when order status is failed or abandoned.
+- Fixed: We fixed some minor bugs related to notifications. 
+- Fixed: Popular posts, we fixed a bug occurring in curated popular posts.
+- Fixed: We fixed some minor bugs related to User Journey.
+
 = 7.19: August 22, 2023 =
 - New: Ecommerce funnel report for WooCommerce and Easy Digital Downloads.
 - New: Setup checklist to get up and running faster

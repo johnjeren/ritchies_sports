@@ -934,6 +934,21 @@
 					'.frm_section_heading .frm_trigger svg',
 					'frm_arrowdown{key}_icon'
 				);
+
+				function syncTriggerIconsWithSetting() {
+					const checkedRadio = document.querySelector( 'input[name="frm_style_setting[post_content][repeat_icon]"]:checked' );
+					if ( ! checkedRadio ) {
+						return;
+					}
+					const event = new Event( 'change', {
+						bubbles: true,
+						cancelable: true
+					});
+
+					checkedRadio.dispatchEvent( event );
+				}
+
+				syncTriggerIconsWithSetting();
 			}
 			changeRepeaterAndCollapseSVGIcon();
 		}

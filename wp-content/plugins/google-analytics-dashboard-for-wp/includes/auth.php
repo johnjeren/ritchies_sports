@@ -73,6 +73,10 @@ final class ExactMetrics_Auth {
 	}
 
 	public function set_analytics_profile( $data = array() ) {
+		if ( ! empty( $data ) ) {
+			$data['connection_time'] = time();
+		}
+
 		update_option( 'exactmetrics_site_profile', $data );
 		$this->profile = $data;
 

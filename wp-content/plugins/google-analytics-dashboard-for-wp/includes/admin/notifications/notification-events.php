@@ -17,7 +17,6 @@ require_once plugin_dir_path( $base->file ) . '/includes/admin/notifications/not
 require_once plugin_dir_path( $base->file ) . '/includes/admin/notifications/notification-upgrade-for-form-conversion.php';
 require_once plugin_dir_path( $base->file ) . '/includes/admin/notifications/notification-upgrade-for-email-summaries.php';
 require_once plugin_dir_path( $base->file ) . '/includes/admin/notifications/notification-upgrade-for-custom-dimensions.php';
-require_once plugin_dir_path( $base->file ) . '/includes/admin/notifications/notification-upgrade-for-google-optimize.php';
 require_once plugin_dir_path( $base->file ) . '/includes/admin/notifications/notification-upgrade-eu-traffic.php';
 require_once plugin_dir_path( $base->file ) . '/includes/admin/notifications/notification-to-add-more-file-extensions.php';
 require_once plugin_dir_path( $base->file ) . '/includes/admin/notifications/notification-to-setup-affiliate-links.php';

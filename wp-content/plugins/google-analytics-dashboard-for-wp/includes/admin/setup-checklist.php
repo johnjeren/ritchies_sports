@@ -250,8 +250,16 @@ class ExactMetrics_Setup_Checklist {
 	 * @return bool
 	 */
 	public function is_dismissed() {
-		// Do not show setup checklist menu if user connected GA.
-		if ( ExactMetrics()->auth->is_authed() || ExactMetrics()->auth->is_network_authed() ) {
+		// Get plugin installed information.
+		$over_time = get_option( 'exactmetrics_over_time', array() );
+
+		if ( ! isset( $over_time['installed_date'] ) ) {
+			return false;
+		}
+
+		// Timestamp 1692662400 is for 22 Aug 2023.
+		if ( $over_time['installed_date'] < 1692662400 ) {
+			// If plugin has installed before 22 Aug 2023, then we don't need to show setup checklist.
 			return true;
 		}
 

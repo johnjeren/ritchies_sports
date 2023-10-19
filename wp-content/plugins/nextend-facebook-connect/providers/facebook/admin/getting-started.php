@@ -2,7 +2,7 @@
 defined('ABSPATH') || die();
 /** @var $this NextendSocialProviderAdmin */
 
-$lastUpdated = '2023-06-15';
+$lastUpdated = '2023-08-21';
 
 $provider = $this->getProvider();
 ?>
@@ -22,16 +22,16 @@ $provider = $this->getProvider();
 
             <p><?php do_action('nsl_getting_started_warnings', $provider, $lastUpdated); ?></p>
 
+            <p><?php printf(__('<u><b>WARNING:</b></u> As of February 1, 2023, %1$s requires Business Verification for Advanced Access, which is necessary for the Facebook login feature. This means that, individuals can no longer use %1$s login on their websites to offer social login for their visitors, only verified businesses will be able to use this provider! For more information about this limitation, please check the %2$sofficial statement%3$s. ', 'nextend-facebook-connect'), 'Facebook', '<a href="https://developers.facebook.com/blog/post/2023/02/01/developer-platform-requiring-business-verification-for-advanced-access/" target="_blank">', '</a>'); ?></p>
+
             <h2 class="title"><?php printf(_x('Create %s', 'App creation', 'nextend-facebook-connect'), 'Facebook App'); ?></h2>
 
             <ol>
                 <li><?php printf(__('Navigate to %s', 'nextend-facebook-connect'), '<a href="https://developers.facebook.com/apps/" target="_blank">https://developers.facebook.com/apps/</a>'); ?></li>
                 <li><?php printf(__('Log in with your %s credentials if you are not logged in.', 'nextend-facebook-connect'), 'Facebook'); ?></li>
-                <li><?php printf(__('Click on the %1$s button and then choose the %2$s option as use case and press %3$s!', 'nextend-facebook-connect'), '"<b>Create App</b>"', '"<b>Set up Facebook Login</b>"', '"<b>Next</b>"'); ?></li>
-                <li><?php printf(__('Pick the %1$s option for the platform.', 'nextend-facebook-connect'), '"<b>Website</b>"'); ?></li>
-                <li><?php printf(__('For the question %1$s, select the %2$s option, then press %3$s.', 'nextend-facebook-connect'), '"<b>Are you building a game?</b>"', '"<b>No, I\'m not building a game</b>"', '"<b>Next</b>"'); ?></li>
+                <li><?php printf(__('Click on the %1$s button and then choose the %2$s option as use case and press %3$s!', 'nextend-facebook-connect'), '"<b>Create App</b>"', '"<b>Allow people to log in with their Facebook account</b>"', '"<b>Next</b>"'); ?></li>
                 <li><?php printf(__('Fill the %1$s and %2$s fields. The specified app name will appear on your %3$s!', 'nextend-facebook-connect'), '"<b>Add an app name</b>"', '"<b>App contact email</b>"', '<a href="https://developers.facebook.com/docs/facebook-login/permissions/overview/" target="_blank">Consent Screen</a>'); ?></li>
-                <li><?php printf(__('%1$sOptional%2$s: choose a %3$s if you would like to.', 'nextend-facebook-connect'), '<b>', '</b>', '"<b>Business Manager Account</b>"'); ?></li>
+                <li><?php printf(__('%1$sOptional%2$s: choose a %3$s if you would like to. If you didn\'t choose a %3$s at this point, you will need to select it in step 19, before you start the %4$s! ', 'nextend-facebook-connect'), '<b>', '</b>', '"<b>Business Manager Account</b>"', '"<b>Verification</b>"'); ?></li>
                 <li><?php printf(__('Click the %1$s button and complete the Security Check.', 'nextend-facebook-connect'), '"<b>Create App</b>"'); ?></li>
                 <li><?php printf(__('Request access to the %1$s permission:', 'nextend-facebook-connect'), '"<b>email</b>"'); ?>
                     <ol>

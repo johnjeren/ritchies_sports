@@ -176,7 +176,7 @@ class WP_Optimize_Lazy_Load {
 	/**
 	 * Update background inline styles callback.
 	 *
-	 * @param array $match [1] - tag name, [2] - tag attribiutes
+	 * @param array $match [1] - tag name, [2] - tag attributes
 	 * @return string
 	 */
 	public function update_background_callback($match) {

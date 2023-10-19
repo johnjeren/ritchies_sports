@@ -190,18 +190,6 @@ class ExactMetrics_Notifications {
 				continue;
 			}
 
-			// Ignore if notification existed before installing ExactMetrics.
-			// Prevents bombarding the user with notifications after activation.
-			$over_time = get_option( 'exactmetrics_over_time', array() );
-
-			if (
-				! empty( $over_time['installed_date'] ) &&
-				! empty( $notification['start'] ) &&
-				$over_time['installed_date'] > strtotime( $notification['start'] )
-			) {
-				continue;
-			}
-
 			$data[] = $notification;
 		}
 

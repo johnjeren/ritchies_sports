@@ -49,6 +49,10 @@ class FrmProAppController {
 		return $location;
 	}
 
+	/**
+	 * @param array $files
+	 * @return array
+	 */
 	public static function combine_js_files( $files ) {
 		$pro_js = self::get_pro_js_files( '.min', false );
 		foreach ( $pro_js as $js ) {
@@ -64,6 +68,9 @@ class FrmProAppController {
 		return is_readable( FrmProAppHelper::plugin_path() . '/js/frm.min.js' );
 	}
 
+	/**
+	 * @return void
+	 */
 	public static function register_scripts() {
 		$suffix = FrmAppHelper::js_suffix();
 
@@ -86,6 +93,7 @@ class FrmProAppController {
 
 		self::localize_global_messages();
 		self::add_password_checks_data_to_js();
+		FrmProStrpLiteController::maybe_register_stripe_scripts();
 	}
 
 	/**
@@ -551,6 +559,17 @@ class FrmProAppController {
 	}
 
 	/**
+	 * Init admin head. It's called via action hook admin_head.
+	 *
+	 * @since 6.5.1
+	 *
+	 * @return void
+	 */
+	public static function admin_init_head() {
+		FrmProAddonsController::show_warning_overlay_for_expired_or_null_license();
+	}
+
+	/**
 	 * @since 5.0.17
 	 *
 	 * @return void
@@ -561,6 +580,11 @@ class FrmProAppController {
 		}
 		self::maybe_enqueue_styles_for_admin_page_action( 'formidable-entries' );
 		self::maybe_enqueue_styles_for_admin_page_action( 'formidable', 'reports' );
+
+		if ( FrmAppHelper::is_admin_page( 'formidable-entries' ) ) {
+			self::register_and_enqueue_admin_script( 'entries' );
+			return;
+		}
 
 		if ( ! FrmAppHelper::is_admin_page( 'formidable' ) ) {
 			return;

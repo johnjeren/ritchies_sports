@@ -3,8 +3,8 @@ Contributors: codeixer,im_niloy
 Tags: product gallery slider,woocommerce product gallery slider,woocommerce product image slider,woocommerce product gallery carousel
 Requires at least: 5.0
 Requires PHP: 7.4
-Tested up to:  6.2
-Stable tag: 2.2.11
+Tested up to:  6.3
+Stable tag: 2.2.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,8 @@ Too Many Product Images in your Product? Product gallery slider for WooCommerce 
 
 
 [__Live Demo__](https://pgs.codeixer.com/product/a-demo-product-with-twist/) | [__Support__](https://www.codeixer.com/contact-us/) | [__Upgrade To Pro »__](https://www.codeixer.com/gallery-slider-for-woocommerce?utm_source=wp-org&utm_medium=plugin-description&utm_campaign=upgrade_pro)
+
+[youtube https://www.youtube.com/watch?v=grdD8pCe5zw&t=7s]
 
 ##See what a few WooCommerce store owners are saying about Product Gallery Slider for WooCommerce:##
 
@@ -103,6 +105,11 @@ we're using this 'woocommerce_before_single_product_summary' this hook to overri
 
 
 == Changelog ==
+
+= 2.2.12 - 17-Sep-23 =
+* Update Appsero SDK
+* Compatibility with WooCommerce Product Bundles plugin
+* Minor bug fix
 
 = 2.2.11 - 3-Jul-23 =
 * Minor bug fix

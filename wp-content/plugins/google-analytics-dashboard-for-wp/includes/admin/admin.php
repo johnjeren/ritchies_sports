@@ -801,3 +801,12 @@ function exactmetrics_empty_measurement_protocol_token()
 
 add_action( 'admin_notices', 'exactmetrics_empty_measurement_protocol_token' );
 add_action( 'network_admin_notices', 'exactmetrics_admin_setup_notices' );
+
+/**
+ * Check if the plugin is MI Lite.
+ *
+ * @return bool
+ */
+function check_is_it_exactmetrics_lite() {
+    return 'googleanalytics.php' == basename( EXACTMETRICS_PLUGIN_FILE );
+}

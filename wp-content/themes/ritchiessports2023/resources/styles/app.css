@@ -1,7 +1,11 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import 'photoswipe/dist/photoswipe.css';
 
+.pswp img{
+    @apply object-contain h-full
+}
 .woocommerce-page .main, .page-template-default .main{
     @apply max-w-7xl mx-auto;
 }
@@ -34,4 +38,8 @@ input[type="text"].input-text{
 
 body.home .main{
     max-width: 100%;
+}
+
+.layout.ui-sortable-helper{
+   background-color: #999;
 }

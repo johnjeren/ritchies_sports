@@ -2814,8 +2814,8 @@ class FrmProEntriesController {
 			$atts['title'] = $atts['label'];
 		}
 
-		$value   = htmlspecialchars( addslashes( $atts['value'] ) );
-		$message = htmlspecialchars( addslashes( $atts['message'] ) );
+		$value   = htmlspecialchars( addslashes( $atts['value'] ), ENT_COMPAT );
+		$message = htmlspecialchars( addslashes( $atts['message'] ), ENT_COMPAT );
 		$onclick = "frmUpdateField({$entry_id},{$field->id},'{$value}','{$message}',{$frm_update_link_count});return false;";
 
 		$html_id = "frm_update_field_{$entry_id}_{$field->id}_{$frm_update_link_count}";

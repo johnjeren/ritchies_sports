@@ -3,10 +3,17 @@ if ( is_admin() ) {
 	require_once EXACTMETRICS_PLUGIN_DIR . 'lite/includes/admin/tools.php';
 	require_once EXACTMETRICS_PLUGIN_DIR . 'lite/includes/admin/metaboxes.php';
 
-	//require_once EXACTMETRICS_PLUGIN_DIR . 'lite/includes/admin/tab-support.php';
+	require_once EXACTMETRICS_PLUGIN_DIR . 'lite/includes/admin/woocommerce-marketing.php';
 }
 
 if ( is_admin() || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
+	
+	
+	// Email summaries related classes
+	require_once EXACTMETRICS_PLUGIN_DIR . 'lite/includes/emails/summaries-infoblocks.php';
+	require_once EXACTMETRICS_PLUGIN_DIR . 'lite/includes/emails/summaries.php';
+	new ExactMetrics_Email_Summaries();
+	
 	$overview_report = new ExactMetrics_Report_Overview();
 	ExactMetrics()->reporting->add_report( $overview_report );
 
@@ -37,6 +44,11 @@ if ( is_admin() || ( defined( 'DOING_CRON' ) && DOING_CRON ) ) {
 	require_once EXACTMETRICS_PLUGIN_DIR . 'lite/includes/admin/reports/report-year-in-review.php';
 	$year_in_review = new ExactMetrics_Lite_Report_YearInReview();
 	ExactMetrics()->reporting->add_report( $year_in_review );
+
+	require_once EXACTMETRICS_PLUGIN_DIR . 'lite/includes/admin/reports/report-summaries.php';
+	$summaries = new ExactMetrics_Report_Summaries();
+	ExactMetrics()->reporting->add_report( $summaries );
+
 }
 
 if ( is_admin() ) {

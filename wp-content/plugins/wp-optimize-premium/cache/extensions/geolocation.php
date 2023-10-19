@@ -1,6 +1,6 @@
 <?php
 /**
- * /!\ This is currently only suppoted for when WooCommerce is enabled, and the geolocation is enabled.
+ * /!\ This is currently only supported for when WooCommerce is enabled, and the geolocation is enabled.
  */
 
 if (!defined('ABSPATH')) die('No direct access allowed');

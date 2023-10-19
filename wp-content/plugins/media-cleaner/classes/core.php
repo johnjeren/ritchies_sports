@@ -809,6 +809,7 @@ class Meow_WPMC_Core {
 					if ( !$this->trash_file( $path ) ) {
 						$this->log( "🚫 Could not trash $path." );
 						error_log( "Media Cleaner: Could not trash $path." );
+						return false;
 					}
 				}
 				wp_update_post( array( 'ID' => $issue->postId, 'post_type' => 'wmpc-trash' ) );
@@ -870,6 +871,50 @@ class Meow_WPMC_Core {
 
 	private $cached_ids = array();
 	private $cached_urls = array();
+
+	// Returns the reference with the type, origin, related to a Media ID it is referenced
+	public function get_reference_for_media_id( $id ) {
+		global $wpdb;
+		$table_name = $wpdb->prefix . "mclean_refs";
+		$refs = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $table_name WHERE mediaId = %d", $id ), OBJECT );
+		if ( empty( $refs ) ) {
+			return false;
+		}
+		$ref = $refs[0];
+		$ref->id = (int)$ref->id;
+		$ref->mediaId = (int)$ref->mediaId;
+		$ref->originType = (int)$ref->originType;
+		$ref->origin = stripslashes( $ref->origin );
+		return $ref;
+	}
+
+	// Return the references related to a Post ID
+	public function get_references_for_post_id( $id ) {
+		global $wpdb;
+		$table_name = $wpdb->prefix . "mclean_refs";
+		$refs = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $table_name WHERE originType LIKE %s", "%[$id]" ), OBJECT );
+		if ( empty( $refs ) ) {
+			return [];
+		}
+		$fresh_refs = array();
+		foreach ( $refs as $ref ) {
+			$mediaId = (int)$ref->mediaId > 0 ? (int)$ref->mediaId : null;
+			if ( !$mediaId && !empty( $ref->mediaUrl ) ) {
+				$mediaId = $this->find_media_id_from_file( $ref->mediaUrl, false );
+				$mediaId = !empty( $mediaId ) ? (int)$mediaId : null;
+			}
+			if ( !$mediaId ) {
+				continue;
+			}
+			array_push( $fresh_refs, [
+				'id' => (int)$ref->id,
+				'mediaId' => $mediaId,
+				'mediaUrl' => $ref->mediaUrl,
+				'originType' => $ref->originType
+			] );
+		}
+		return $fresh_refs;
+	}
 
 	// The references are actually not being added directly in the DB, they are being pushed
 	// into a cache ($this->refcache).

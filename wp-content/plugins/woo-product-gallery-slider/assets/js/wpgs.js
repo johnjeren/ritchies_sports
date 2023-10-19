@@ -1,4 +1,3 @@
-
 (function ($) {
 	'use strict';
 
@@ -6,9 +5,9 @@
 
 		jQuery('.wpgs img').removeAttr('srcset');
 
-		$('.woocommerce-product-gallery__image img').load(function () {
+		$('.woo-product-gallery-slider .woocommerce-product-gallery__image img').load(function () {
 
-			var imageObj = $('.woocommerce-product-gallery__image img');
+			var imageObj = $('.woo-product-gallery-slider .woocommerce-product-gallery__image img');
 
 			if (!(imageObj.width() == 1 && imageObj.height() == 1)) {
 
@@ -97,7 +96,7 @@
 		};
 		// Change image on variation
 		var get_thumb_first = $(document).find('.wpgs-thumb-main-image');
-		var get_main_first = $(document).find('.woocommerce-product-gallery__image');
+		var get_main_first = $(document).find('.woo-product-gallery-slider .woocommerce-product-gallery__image');
 		get_main_first.find('img').removeAttr('srcset');
 
 

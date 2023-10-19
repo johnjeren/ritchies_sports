@@ -194,6 +194,9 @@ class FrmProFieldsHelper {
 			}
 			$value = $new_value;
 		} else {
+			if ( is_null( $new_value ) ) {
+				$new_value = '';
+			}
 			$value = str_replace( $args['matches'][0][ $args['match_key'] ], $new_value, $value );
 		}
 	}
@@ -3241,8 +3244,13 @@ class FrmProFieldsHelper {
 	<?php
 	}
 
+	/**
+	 * @param array $field_types
+	 * @return array
+	 */
 	public static function modify_available_fields( $field_types ) {
-		// only show the credit card field when an add-on says so
+		// TODO We only need this filter now when Stripe Lite isn't available.
+		// Only show the credit card field when an add-on says so.
 		$show_credit_card = apply_filters( 'frm_include_credit_card', false );
 		if ( $show_credit_card ) {
 			$field_types['credit_card']['icon'] = str_replace( ' frm_show_upgrade', '', $field_types['credit_card']['icon'] );

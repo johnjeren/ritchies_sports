@@ -67,7 +67,7 @@ var WP_Optimize_Premium = function() {
 		take_a_backup_checkbox2 = $('#enable-auto-backup-3'),
 		// which elements we hide when images view container is empty
 		hide_when_empty_view_elements = wpoptimize.sites.length > 1 ? [
-			// for miltisite we keep block with site selector visible
+			// for multisite we keep block with site selector visible
 			$('#wpo_unused_images_loaded_count')
 		] : [
 			$('#wpo_unused_images_control_panel'),
@@ -1070,7 +1070,7 @@ var WP_Optimize_Premium = function() {
 		var last_scan_sizes_key = ['last_scan_', IMAGES_WORK_MODE.DETECT_SIZES].join('');
 		$('.wpo-last-scan-text', unused_image_sizes_section).text(data[last_scan_sizes_key]);
 
-		// show informations in the sizes sidebar.
+		// show information in the sizes sidebar.
 		show_sizes_list($('#registered_image_sizes'), get_array_items_by_key_value(data.image_sizes, 'used', true), wpoptimize.no_registered_image_sizes);
 		show_sizes_list($('#unused_image_sizes'), get_array_items_by_key_value(data.image_sizes, 'used', false), wpoptimize.no_unsed_image_sizes);
 

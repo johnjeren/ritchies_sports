@@ -164,7 +164,7 @@ function wpo_get_user_roles($username) {
 	$user = $wpdb->get_row($wpdb->prepare("SELECT `ID` FROM {$wpdb->users} WHERE `user_login`=%s", $username));
 	if (empty($user)) return false;
 
-	$roles_value = $wpdb->get_row($wpdb->prepare("SELECT `meta_value` FROM {$wpdb->usermeta} WHERE `meta_key`='wp_capabilities' AND `user_id`=%s", $user->ID));
+	$roles_value = $wpdb->get_row($wpdb->prepare("SELECT meta_value FROM {$wpdb->usermeta} WHERE meta_key='{$wpdb->prefix}capabilities' AND user_id=%d", $user->ID));
 	if (empty($roles_value)) return false;
 
 	$roles = unserialize($roles_value->meta_value);

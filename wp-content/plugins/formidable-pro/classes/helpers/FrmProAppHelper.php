@@ -238,13 +238,16 @@ class FrmProAppHelper {
 	 * Get a value from the current user profile
 	 *
 	 * @since 2.0
+	 *
+	 * @param string $value
+	 * @param bool   $return_array
 	 * @return string|array
 	 */
 	public static function get_current_user_value( $value, $return_array = false ) {
 		global $current_user;
-		$new_value = isset($current_user->{$value}) ? $current_user->{$value} : '';
-		if ( is_array($new_value) && ! $return_array ) {
-			$new_value = implode(', ', $new_value);
+		$new_value = isset( $current_user->{$value} ) ? $current_user->{$value} : '';
+		if ( is_array( $new_value ) && ! $return_array ) {
+			$new_value = implode( ', ', $new_value );
 		}
 
 		return $new_value;
@@ -666,7 +669,7 @@ class FrmProAppHelper {
 		$filter_args = array( 'is_draft' => $args['drafts'] );
 
 		// If the field is from a repeating section (or embedded form?) get the parent ID.
-		$filter_args['return_parent_id'] = ( $where_field->form_id != $args['form_id'] );
+		$filter_args['return_parent_id'] = is_array( $args['form_id'] ) ? ! in_array( $where_field->form_id, $args['form_id'], true ) : $where_field->form_id != $args['form_id'];
 
 		// Add entry IDs to $where_statement.
 		if ( $args['use_ids'] ) {
@@ -924,7 +927,7 @@ class FrmProAppHelper {
 	/**
 	 * Handles missing mime_content_type function.
 	 *
-	 * @since 6.x
+	 * @since 6.4.3
 	 *
 	 * @param string $file
 	 *
@@ -1041,7 +1044,7 @@ class FrmProAppHelper {
 	/**
 	 * Get the server OS
 	 *
-	 * @since 6.4.x
+	 * @since 6.4.2
 	 *
 	 * @return string
 	 */

@@ -12,7 +12,7 @@
     "require": {
         "collizo4sky/persist-admin-notices-dismissal": "^1.4",
         "niloys7/remote-admin-notification-client": "dev-main",
-        "appsero/client": "1.2.3"
+        "appsero/client": "1.2.4"
     },
     "autoload": {
         "files": [

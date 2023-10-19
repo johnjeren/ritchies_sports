@@ -260,6 +260,20 @@ function _exactmetrics_check_deprecated_addons() {
 		// Deprecated addon is activated, add a notice.
 		add_action( 'admin_notices', '_exactmetrics_notice_deprecated_facebook_instant_articles' );
 	}
+
+	// Check google-optimize
+	if (
+		in_array(
+			'exactmetrics-google-optimize/exactmetrics-google-optimize.php',
+			apply_filters(
+				'active_plugins',
+				get_option( 'active_plugins' )
+			)
+		)
+	) {
+		// Deprecated addon is activated, add a notice.
+		add_action( 'admin_notices', '_exactmetrics_notice_deprecated_google_optimize' );
+	}
 }
 
 /**
@@ -272,19 +286,78 @@ function _exactmetrics_check_deprecated_addons() {
  */
 function _exactmetrics_notice_deprecated_facebook_instant_articles()
 {
-	$url = admin_url('plugins.php');
-	// Check for MS dashboard
-	if (is_network_admin()) {
-		$url = network_admin_url('plugins.php');
-	}
 	?>
 	<div data-dismissible="deprecated-addon-facebook-instant-articles" class="notice notice-error is-dismissible">
 		<p>
-			<?php echo __( 'Facebook Instant Article support ended in April 2023. You may deactivate and delete the ExactMetrics addon at your earliest convenience.', 'exactmetrics-premium');
-		?>
+			<?php echo __( 'Facebook Instant Article support ended in April 2023. You may deactivate and delete the ExactMetrics addon at your earliest convenience.', 'exactmetrics-premium' ); ?>
 		</p>
 	</div>
 	<?php
 }
 
+/**
+ * Admin notice for deprecated Google Optimize addon
+ *
+ * @access public
+ * @return void
+ * @since 8.20.0
+ *
+ */
+function _exactmetrics_notice_deprecated_google_optimize()
+{
+	?>
+	<div data-dismissible="deprecated-addon-facebook-instant-articles" class="notice notice-error is-dismissible">
+		<p>
+			<?php echo __( 'Google Optimize and Optimize 360 support ended in September 2023. You may deactivate and delete the ExactMetrics addon at your earliest convenience.', 'exactmetrics-premium' ); ?>
+		</p>
+	</div>
+	<?php
+}
 
+if (!function_exists('exactmetrics_get_ua')) {
+    function exactmetrics_get_ua() {
+        return '';
+    }
+}
+
+if (!function_exists('exactmetrics_get_network_ua')) {
+    function exactmetrics_get_network_ua() {
+        return '';
+    }
+}
+
+if (!function_exists('exactmetrics_mp_track_event_call')) {
+    function exactmetrics_mp_track_event_call() {
+        return '';
+    }
+}
+
+if (!function_exists('exactmetrics_mp_api_call')) {
+    function exactmetrics_mp_api_call() {
+        return '';
+    }
+}
+
+if (!function_exists('exactmetrics_get_mp_api_url')) {
+    function exactmetrics_get_mp_api_url() {
+        return '';
+    }
+}
+
+if (!function_exists('exactmetrics_get_tracking_ids')) {
+    function exactmetrics_get_tracking_ids() {
+        return '';
+    }
+}
+
+if (!function_exists('exactmetrics_is_valid_ua')) {
+    function exactmetrics_is_valid_ua() {
+        return false;
+    }
+}
+
+if (!function_exists('exactmetrics_get_ua_to_output')) {
+    function exactmetrics_get_ua_to_output() {
+        return '';
+    }
+}

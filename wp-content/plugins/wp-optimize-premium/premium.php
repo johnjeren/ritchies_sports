@@ -22,16 +22,16 @@ class WP_Optimize_Premium {
 	public function __construct() {
 
 		if (class_exists('WP_CLI_Command')) {
-			include_once(WPO_PLUGIN_MAIN_PATH . '/includes/class-wp-optimize-cli-command.php');
+			include_once(WPO_PLUGIN_MAIN_PATH . 'includes/class-wp-optimize-cli-command.php');
 		}
 
 		// load task manager.
 		WP_Optimize()->get_task_manager();
-		include_once(WPO_PLUGIN_MAIN_PATH . '/includes/class-wp-optimize-queue-task.php');
+		include_once(WPO_PLUGIN_MAIN_PATH . 'includes/class-wp-optimize-queue-task.php');
 
 		$this->cron_scheduler = WP_Optimize_Cron_scheduler::get_instance();
 
-		include_once(WPO_PLUGIN_MAIN_PATH.'/includes/class-wp-optimize-lazy-load.php');
+		include_once(WPO_PLUGIN_MAIN_PATH.'includes/class-wp-optimize-lazy-load.php');
 		add_filter('wp_optimize_loggers_classes', array($this, 'loggers_classes'));
 		add_filter('additional_options_updraft_slack_logger', array($this, 'additional_options_updraft_slack_logger'), 20, 3);
 
@@ -88,7 +88,7 @@ class WP_Optimize_Premium {
 		$this->include_power_tweaks();
 
 		if (!class_exists('Updraft_Manager_Updater_1_8')) {
-			include_once(WPO_PLUGIN_MAIN_PATH.'/vendor/davidanderson684/simba-plugin-manager-updater/class-udm-updater.php');
+			include_once(WPO_PLUGIN_MAIN_PATH.'vendor/davidanderson684/simba-plugin-manager-updater/class-udm-updater.php');
 		}
 		
 		try {
@@ -535,7 +535,7 @@ class WP_Optimize_Premium {
 			'note_save_settings' => __('Note: Your settings have changed; remember to save them.', 'wp-optimize'),
 			'time' => __('Time', 'wp-optimize'),
 			'date' => __('Date', 'wp-optimize'),
-			'day' => __('Day', 'wp-optmize'),
+			'day' => __('Day', 'wp-optimize'),
 			'day_number' => __('Day Number', 'wp-optimize'),
 			'inactive' => __('Inactive', 'wp-optimize'),
 			'active' => __('Active', 'wp-optimize'),
@@ -608,7 +608,7 @@ class WP_Optimize_Premium {
 		$lazyload_options = wp_parse_args($options->get_option('lazyload'), array('images' => false, 'iframes' => false, 'backgrounds' => false));
 		if ($lazyload_options['images'] || $lazyload_options['iframes'] || $lazyload_options['backgrounds']) {
 
-			include_once(WPO_PLUGIN_MAIN_PATH.'/includes/class-wp-optimize-lazy-load.php');
+			include_once(WPO_PLUGIN_MAIN_PATH.'includes/class-wp-optimize-lazy-load.php');
 
 			new WP_Optimize_Lazy_Load();
 
@@ -621,9 +621,9 @@ class WP_Optimize_Premium {
 	 * Include images trash functionality.
 	 */
 	public function include_images_trash() {
-		include_once(WPO_PLUGIN_MAIN_PATH . '/includes/class-wp-optimize-images-trash-manager.php');
-		include_once(WPO_PLUGIN_MAIN_PATH . '/includes/class-wp-optimize-images-trash-manager-commands.php');
-		include_once(WPO_PLUGIN_MAIN_PATH . '/includes/class-wp-optimize-images-trash-task.php');
+		include_once(WPO_PLUGIN_MAIN_PATH . 'includes/class-wp-optimize-images-trash-manager.php');
+		include_once(WPO_PLUGIN_MAIN_PATH . 'includes/class-wp-optimize-images-trash-manager-commands.php');
+		include_once(WPO_PLUGIN_MAIN_PATH . 'includes/class-wp-optimize-images-trash-task.php');
 
 		WP_Optimize_Images_Trash_Manager();
 	}
@@ -699,7 +699,7 @@ class WP_Optimize_Premium {
 	 * @return void
 	 */
 	private function include_cache_premium() {
-		include_once(WPO_PLUGIN_MAIN_PATH.'/cache/class-wpo-cache-premium.php');
+		include_once(WPO_PLUGIN_MAIN_PATH.'cache/class-wpo-cache-premium.php');
 
 		new WPO_Cache_Premium();
 	}
@@ -710,7 +710,7 @@ class WP_Optimize_Premium {
 	 * @return void
 	 */
 	private function include_power_tweaks() {
-		include_once WPO_PLUGIN_MAIN_PATH.'/includes/power-tweaks/class-wp-optimize-power-tweaks.php';
+		include_once WPO_PLUGIN_MAIN_PATH.'includes/power-tweaks/class-wp-optimize-power-tweaks.php';
 
 		$this->power_tweaks = new WP_Optimize_Power_Tweaks();
 	}
@@ -758,14 +758,22 @@ class WP_Optimize_Premium {
 	 * @return Array - list of existing components
 	 */
 	public function lazyload_already_provided_by() {
-	
 		$provided_by = array();
-	
-		global $shortname;
+		$plugins = array(
+			'AUTOPTIMIZE_PLUGIN_VERSION' => 'Autoptimize',
+			'ET_CORE' => 'Divi',
+			'JETPACK__VERSION' => 'Jetpack',
+			'OPTML_VERSION' => 'Optimole',
+			'ROCKET_LL_VERSION' => 'Rocket Lazy Load',
+			'WP_SMUSH_VERSION' => 'Smush WPMU Dev',
+		);
 
-		if (function_exists('et_setup_theme') && 'divi' == $shortname) $provided_by[] = 'Divi';
-		if (defined('AUTOPTIMIZE_PLUGIN_VERSION')) $provided_by[] = 'Autoptimize';
-		
+		foreach ($plugins as $constant => $name) {
+			if (defined($constant)) {
+					$provided_by[] = $name;
+			}
+		}
+
 		return $provided_by;
 	}
 }
@@ -784,6 +792,6 @@ function WP_Optimize_Premium() {
 }
 
 require_once(WPO_PLUGIN_MAIN_PATH.'includes/class-wp-optimize-tasks-queue.php');
-require_once(WPO_PLUGIN_MAIN_PATH.'/includes/class-wp-optimize-transients-cache.php');
+require_once(WPO_PLUGIN_MAIN_PATH.'includes/class-wp-optimize-transients-cache.php');
 
 $GLOBALS['wp_optimize_premium'] = WP_Optimize_Premium();

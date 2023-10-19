@@ -151,11 +151,10 @@ if ( ! empty( $vars ) && is_callable( 'FrmStylesHelper::output_vars' ) ) {
 .frm_repeat_buttons a.frm_add_form_row {
 	line-height: 1.8;
 }
-.frm_repeat_buttons .frm_remove_form_row svg.frmsvg,
-.frm_repeat_buttons .frm_add_form_row svg.frmsvg {
-	width: auto;
-	height: auto;
-	margin-bottom: 0.1em;
+.frm_form_field.frm_repeat_buttons .frm_remove_form_row:not(.frm_button) svg.frm-svg-icon,
+.frm_form_field.frm_repeat_buttons .frm_add_form_row:not(.frm_button) svg.frm-svg-icon {
+	fill: <?php echo esc_html( $defaults['submit_text_color'] . $important ); ?>;
+	fill: var(--submit-text-color) <?php echo esc_html( $important ); ?>;
 }
 
 .frm_repeat_inline .frm_repeat_buttons a.frm_icon_font{
@@ -414,12 +413,6 @@ $arrow_up         = FrmProStylesController::base64_encode_image( FrmProAppHelper
 	margin:0;
 }
 
-.with_frm_style .frm_radio input[type=radio]:checked:before,
-.with_frm_style .frm_scale input[type=radio]:checked:before,
-.with_frm_style .frm_checkbox input[type=checkbox]:checked:before {
-	box-shadow: inset 10px 10px var(--progress-active-bg-color);
-}
-
 .with_frm_style .frm_scale input[type=radio]:checked:before {
 	transform: scale(1);
 }
@@ -433,7 +426,7 @@ $arrow_up         = FrmProStylesController::base64_encode_image( FrmProAppHelper
 }
 
 .frm-star-group .frmsvg,
-.frm-star-group input + label {
+.frm-star-group input + label.star-rating {
 	float:none;
 	width:25px;
 	height:25px;
@@ -451,11 +444,8 @@ $arrow_up         = FrmProStylesController::base64_encode_image( FrmProAppHelper
 	fill: #F0AD4E;
 }
 
-.frm-star-group input + label:before,
-.frm-star-group .star-rating:before{
-	color:#F0AD4E;
-	display: inline;
-	vertical-align:top;
+.frm-star-group input + label.star-rating:before {
+	content: '';
 }
 
 .frm-star-group input[type=radio]:checked + label:before,
@@ -473,11 +463,6 @@ $arrow_up         = FrmProStylesController::base64_encode_image( FrmProAppHelper
 
 .frm-star-group .star-rating-readonly{
 	cursor:default !important;
-}
-
-.star-rating .frmsvg {
-	height: 25px;
-	width: 25px;
 }
 
 .frm-star-group > svg + svg {
@@ -1362,6 +1347,27 @@ ul.frm_inline_list li{
 	box-shadow:0 0 5px 1px rgba(0,0,0,0.075);
 <?php } ?>
 }
+/* Repeater Fields */
+.with_frm_style .frm_repeat_sec .frm_form_field.frm_repeat_buttons .frm-svg-icon {
+	fill:<?php echo esc_html( $defaults['repeat_icon_color'] . $important ); ?>;
+	fill:var(--repeat-icon-color)<?php echo esc_html( $important ); ?>;
+}
+.frm_style_frm_style_template .frm_form_field.frm_repeat_buttons .frm-svg-icon {
+	fill: var(--submit-text-color)!important;
+}
+.frm_remove_form_row:hover,
+.frm_add_form_row:hover {
+	background: var(--submit-hover-bg-color);
+	border-color: var(--submit-hover-border-color);
+	color: var(--submit-hover-color);
+}
+.frm_repeat_sec .frm_form_field.frm_repeat_buttons .frm_add_form_row:hover svg.frm-svg-icon,
+.frm_repeat_sec .frm_form_field.frm_repeat_buttons .frm_remove_form_row:hover svg.frm-svg-icon,
+.frm_repeat_sec .frm_form_field.frm_repeat_buttons .frm_add_form_row:hover svg.frmsvg,
+.frm_repeat_sec .frm_form_field.frm_repeat_buttons .frm_remove_form_row:hover svg.frmsvg {
+	fill: var(--submit-hover-color);
+}
+/* End Repeater Fields */
 
 .frm_tiles h3{
 	margin-top:5px;
@@ -1377,7 +1383,6 @@ ul.frm_inline_list li{
 .frm_slidein .frm_form_fields  > fieldset{
 	animation-name: frmSlideInRight;
 	animation-duration: 1s;
-	animation-fill-mode: both;
 }
 
 .frm_slidein.frm_going_back .frm_form_fields  > fieldset {

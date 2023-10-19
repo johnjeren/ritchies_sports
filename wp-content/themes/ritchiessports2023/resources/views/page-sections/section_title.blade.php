@@ -1,6 +1,10 @@
-<div class="bg-white px-6 py-12 sm:py-16 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-      <h2 class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"><?=$section['title']?></h2>
-      <p class="mt-6 text-lg leading-8 text-gray-600"><?=$section['subtext']?></p>
+<?php $background_color = $section['background_color'] ?? 'bg-white';
+  $text_color = $section['text_color']=='light' ? 'text-white' : 'text-gray-900';
+  $container_width = $section['container_width']=='full-width' ? 'max-w-none' : 'max-w-7xl';
+?>
+<div class="py-12 sm:py-16" style="background-color: <?=$background_color?>;">
+    <div class="mx-auto <?=$container_width?> text-center">
+      <h2 class="mt-2 text-4xl font-bold tracking-tight <?=$text_color?> sm:text-6xl"><?=$section['title']?></h2>
+      <p class="mt-6 text-lg leading-8 <?=$text_color?>"><?=$section['subtext']?></p>
     </div>
   </div>

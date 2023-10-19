@@ -39,7 +39,6 @@ class ExactMetrics_Rest_Routes {
 			'update_popular_posts_theme_setting'
 		) );
 
-		// TODO: remove function from Google Optimize Addon.
 		add_action( 'wp_ajax_exactmetrics_get_posts', array( $this, 'get_posts' ) );
 
 		// Search for taxonomies.
@@ -283,10 +282,10 @@ class ExactMetrics_Rest_Routes {
 	 * Return the state of the addons ( installed, activated )
 	 */
 	public function get_addons() {
-
+		global $current_user;
 		check_ajax_referer( 'mi-admin-nonce', 'nonce' );
-
-		if ( ! current_user_can( 'exactmetrics_save_settings' ) ) {
+		
+		if ( ! current_user_can( 'exactmetrics_view_dashboard' ) ) {
 			return;
 		}
 
@@ -354,6 +353,14 @@ class ExactMetrics_Rest_Routes {
 		$parsed_addons['givewp'] = array(
 			'active' => function_exists( 'Give' ),
 		);
+		// Charitable WP.
+		$parsed_addons['charitable'] = array(
+			'active' => class_exists( 'Charitable' ),
+		);
+		// WishList Member.
+		$parsed_addons['wishlist_member'] = array(
+			'active' => function_exists( 'wishlistmember_instance' ),
+		);
 		// GiveWP Analytics.
 		$parsed_addons['givewp_google_analytics'] = array(
 			'active' => function_exists( 'Give_Google_Analytics' ),
@@ -401,7 +408,7 @@ class ExactMetrics_Rest_Routes {
 			'slug'      => 'wpforms-lite',
 			'settings'  => admin_url( 'admin.php?page=wpforms-overview' ),
 		);
-		
+
 		// UserFeedback.
 		$parsed_addons['userfeedback-lite'] = array(
 			'active'    => function_exists( 'userfeedback' ),
@@ -1108,11 +1115,23 @@ class ExactMetrics_Rest_Routes {
 
 		$post_type = isset( $_POST['post_type'] ) ? sanitize_text_field( wp_unslash( $_POST['post_type'] ) ) : 'any';
 
+		$already_added = exactmetrics_get_option('popular_posts_inline_curated', []);
+		$exclude = array();
+		if( is_array( $already_added ) && !empty( $already_added ) ){
+			foreach ( $already_added as $key => $value ) {
+				$exclude[$value['id']] = $value['id'];
+			}
+		}
+		
+		$exclude = array_unique(array_values($exclude));
+
 		$args = array(
 			's'              => isset( $_POST['keyword'] ) ? sanitize_text_field( wp_unslash( $_POST['keyword'] ) ) : '',
 			'post_type'      => $post_type,
-			'posts_per_page' => isset( $_POST['numberposts'] ) ? sanitize_text_field( wp_unslash( $_POST['numberposts'] ) ) : 10,
-			'orderby'        => 'relevance',
+			'posts_per_page' => isset( $_POST['numberposts'] ) ? sanitize_text_field( wp_unslash( $_POST['numberposts'] ) ) : 25,
+			'orderby'        => 'post_title',
+			'order'          => 'ASC',
+			'post__not_in'   => $exclude,
 		);
 
 		$array = array();

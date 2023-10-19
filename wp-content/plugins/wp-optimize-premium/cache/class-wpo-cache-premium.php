@@ -20,6 +20,9 @@ class WPO_Cache_Premium {
 		// option defaults filter for premium features.
 		add_filter('wpo_cache_defaults', array($this, 'get_defaults'));
 
+		// Add premium cache rules before initializing the default cache rules.
+		WPO_Cache_Rules_Premium::get_instance();
+
 		$this->config = WP_Optimize()->get_page_cache()->config->get();
 
 		add_action('woocommerce_init', array($this, 'maybe_set_tax_country_cookie'), 40);
@@ -44,8 +47,8 @@ class WPO_Cache_Premium {
 		add_action('delete_attachment', array($this, 'always_purge_post_on_update'), 10, 1);
 
 		// Cloudflare initialisation.
-		include_once(WPO_PLUGIN_MAIN_PATH.'/cache/class-wp-optimize-cloudflare-api.php');
-		include_once(WPO_PLUGIN_MAIN_PATH.'/cache/class-wp-optimize-cloudflare.php');
+		include_once(WPO_PLUGIN_MAIN_PATH.'cache/class-wp-optimize-cloudflare-api.php');
+		include_once(WPO_PLUGIN_MAIN_PATH.'cache/class-wp-optimize-cloudflare.php');
 		new WP_Optimize_Cloudflare($this->config);
 
 		// Add action for disable caching for selected posts.
@@ -56,8 +59,6 @@ class WPO_Cache_Premium {
 		
 		// Add user specific cache option
 		add_action('wpo_after_cache_settings', array($this, 'output_user_specific_cache_option'), 10);
-
-		WPO_Cache_Rules_Premium::get_instance();
 	}
 	
 	/**
@@ -246,7 +247,7 @@ class WPO_Cache_Premium {
 			 */
 			if (apply_filters('wpo_add_woocommerce_default_currency_to_cache_config', true)) {
 				// Save the default WC currency in our config.
-				// Note: We use get_option('woocommerce_currency') as get_woocommerce_currency() is overriden by the currency selector plugin.
+				// Note: We use get_option('woocommerce_currency') as get_woocommerce_currency() is overridden by the currency selector plugin.
 				$config['default_values']['woocommerce_currency'] = get_option('woocommerce_currency');
 			}
 		}
@@ -274,7 +275,7 @@ class WPO_Cache_Premium {
 
 				// We need the database, WooCommerce 3.4+ and PHP 5.4+ to use Geolite2
 				$config['default_values']['wc_geolocate'] = isset($database) && file_exists($database) && version_compare(WC()->version, '3.4.0', '>=') && version_compare(PHP_VERSION, '5.4.0', '>=');
-				if (file_exists($database)) {
+				if (isset($database) && file_exists($database)) {
 					$config['default_values']['wc_geolocate_database'] = wp_normalize_path($database);
 				}
 			}
@@ -376,7 +377,7 @@ class WPO_Cache_Premium {
 			$_COOKIE['woocommerce_tax_country'] = $_POST['billing_country'];
 			return;
 		} elseif (isset($_REQUEST['wc_country_preselect'])) {
-			// Value from VAT complience form
+			// Value from VAT compliance form
 			setcookie('woocommerce_tax_country', $_REQUEST['wc_country_preselect'], (time() + 30 * 86400), '/');
 			$_COOKIE['woocommerce_tax_country'] = $_REQUEST['wc_country_preselect'];
 			return;
@@ -455,7 +456,7 @@ class WPO_Cache_Premium {
 	}
 
 	/**
-	 * Ouptut user specific cache option.
+	 * Output user specific cache option.
 	 */
 	public function output_user_specific_cache_option() {
 		global $is_nginx;
